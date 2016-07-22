@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VUNDLE="https://github.com/VundleVim/Vundle.vim.git"
-VIMDIR=~/vim
+VIMDIR=~/.vim
 
 if [ ! -d "$VIMDIR" ]; then
     mkdir -p "$VIMDIR"
