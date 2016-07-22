@@ -16,6 +16,6 @@ fi
 git clone "$VUNDLE" "$VIMDIR/bundle/Vundle.vim"
 
 ln -sf vimrc ~/.vimrc
-echo "Created symlink: ~/.vimrc -> $(PWD)/vimrc"
+echo "Created symlink: ~/.vimrc -> $(pwd)/vimrc"
 
 vim +PluginInstall +qall
