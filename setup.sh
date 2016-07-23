@@ -28,10 +28,10 @@ ln -sf $(pwd)/minttyrc ~/.minttyrc
 echo -e "\e[31mCloning or pulling Vundle from github.com so we can install Vim plugins...\e[0m"
 if [ ! -d ~/.vim/bundle/Vundle.vim ]
 then
-    git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
+    git clone "$VUNDLE" "$VUNDLEDIR"
 else
-    echo "Changing directory to "$VUNDLEDIR""
-    cd "$VUNDLEDIR"; echo "now in $(pwd)"; git pull; cd "$OURDIR"; echo "now in $(pwd)";
+    echo ""$VUNDLEDIR" already exists. Changing directory to "$VUNDLEDIR"..."
+    cd "$VUNDLEDIR"; echo "Now in $(pwd)..."; echo "Pulling..."; git pull; cd "$OURDIR"; echo "Now in $(pwd)...";
 fi
 
 
