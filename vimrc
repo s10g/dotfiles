@@ -23,8 +23,8 @@ call vundle#begin()
 
 
     "-------------------=== Languages support ===-------------------
-    Plugin 'scrooloose/syntastic'               " scrooloose's syntax thing
-    Plugin 'davidhalter/jedi-vim'               " code completion
+    "Plugin 'scrooloose/syntastic'               " scrooloose's syntax thing
+    "Plugin 'davidhalter/jedi-vim'               " code completion
 
 
     "-------------------=== Python  ===-----------------------------
@@ -92,18 +92,18 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 "=====================================================
 "" Jedi settings
 "=====================================================
-let g:jedi#use_tabs_not_buffers = 1
+"let g:jedi#use_tabs_not_buffers = 1
 
 
 "=====================================================
 "" Syntastic settings
 "=====================================================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8', 'pylint', 'pycodestyle']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_enable_highlighting = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['flake8', 'pylint', 'pycodestyle']
