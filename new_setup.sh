@@ -6,7 +6,7 @@ VUNDLE=https://github.com/VundleVim/Vundle.vim.git
 
 
 # Making sure we want to run this script...
-echo -e "\e[31m--- This script will set up Vim and plugins for you and symlink some .dotfiles in your home. Ctrl-c to abort now if this is not what you want. ---\e[0m"
+echo -e "\e[31m--- This script will set up Vim and plugins for you and symlink some .dotfiles (.vimrc, .bashrc, .dir_colors, .minttyrc) in your home. Hit Ctrl-c to abort or Enter to continue... ---\e[0m"
 read -p ""
 
 
