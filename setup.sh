@@ -23,8 +23,13 @@ ln -sf $(pwd)/minttyrc ~/.minttyrc
 
 
 # Cloning Vundle...
-echo -e "\e[31mFetching Vundle so we can install Vim plugins...\e[0m"
-git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
+echo -e "\e[31mCloning or pulling Vundle from github.com so we can install Vim plugins...\e[0m"
+if [ ! -d ~/.vim/bundle/Vundle.vim ]
+then
+    git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
+else
+    git --work-tree=~/.vim/bundle/Vundle.vim --git-dir=~/.vim/bundle/Vundle.vim/.git pull origin master
+fi
 
 
 # Installing Vim plugins...
