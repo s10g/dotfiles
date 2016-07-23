@@ -4,9 +4,8 @@ PIP="https://bootstrap.pypa.io/get-pip.py"
 VUNDLE=https://github.com/VundleVim/Vundle.vim.git
 
 
-echo "Cloning Vundle to ~/.vim/bundle/Vundle.vim"
-git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
 
+echo -e "\e[4m--- Creating symlinks ---"
 echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
 ln -sf $(pwd)/vimrc ~/.vimrc
 
@@ -19,8 +18,10 @@ ln -sf $(pwd)/dir_colors ~/.dir_colors
 echo "Creating symlink: ~/.minttyrc -> $(pwd)/minttyrc"
 ln -sf $(pwd)/minttyrc ~/.minttyrc
 
-echo -e "\e[4mInstalling plugins using Vim (Vundle). Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter.\e[0m"
-read -p "Press Enter."
+echo "\e[4m--- Fetching Vundle so we can install Vim plugins ---"
+git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
+
+echo -e "\e[31m--- Installing plugins using Vim (Vundle). Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter.\e[0m ---"
 vim +PluginInstall
 
 echo ""
