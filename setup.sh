@@ -10,15 +10,31 @@ if [ ! -d "$VIMDIR" ]; then
 fi
 
 
+echo ""
+echo "###"
+echo "# Cloning Vundle into correct location."
+echo "###"
+echo ""
 git clone "$VUNDLE" "$VIMDIR/bundle/Vundle.vim"
 
-ln -sf vimrc ~/.vimrc
-echo "Created symlink: ~/.vimrc -> $(pwd)/vimrc"
 
-read -p "About to install the vim plugins. Vim will complain when it does this because the color scheme isn't installed yet. Just hit enter."
+echo ""
+echo "###"
+echo "# Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
+echo "###"
+echo ""
+ln -sf $(pwd)/vimrc ~/.vimrc
+
+echo ""
+echo "###"
+read -p "# About to install the vim plugins. Vim will complain when it does this because the color scheme isn't installed yet. Just hit enter."
+echo "###"
+echo ""
 vim +PluginInstall +qall
 
+echo ""
 echo "###"
 echo "# Don't forget to install pip: curl -O "$PIP" && python get-pip.py"
 echo "# After you have pip, install flake8: pip install flake8"
 echo "###"
+echo ""
