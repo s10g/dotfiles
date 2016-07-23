@@ -1,4 +1,3 @@
-" Be iMproved
 set nocompatible
 
 "=====================================================
@@ -24,16 +23,18 @@ call vundle#begin()
 
 
     "-------------------=== Languages support ===-------------------
+    Plugin 'scrooloose/syntastic'               " scrooloose's syntax thing
+    Plugin 'davidhalter/jedi-vim'               " code completion
 
 
     "-------------------=== Python  ===-----------------------------
-    Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
 
 
 call vundle#end()                           " required
 filetype on
 filetype plugin on
 filetype plugin indent on
+
 
 "=====================================================
 "" General settings
@@ -70,10 +71,15 @@ set clipboard=unnamed                       " use system clipboard
 
 set laststatus=2                            " which statusline mode we use
 
+
+"=====================================================
 "" Search settings
 "=====================================================
 set incsearch	                            " incremental search
+set ignorecase                              " ignores case in searches unless...
+set smartcase                               " ... your search contains an upper case character
 "set hlsearch	                            " highlight search results
+
 
 "=====================================================
 "" Airline settings
@@ -82,30 +88,22 @@ let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 
-"=====================================================
-"" Python settings
-"=====================================================
-let g:pymode_indent=1
 
-" syntax highlight
-let g:pymode_syntax=1
-let g:pymode_syntax_slow_sync=1
-let g:pymode_syntax_all=1
-let g:pymode_syntax_print_as_function=g:pymode_syntax_all
-let g:pymode_syntax_highlight_async_await=g:pymode_syntax_all
-let g:pymode_syntax_highlight_equal_operator=g:pymode_syntax_all
-let g:pymode_syntax_highlight_stars_operator=g:pymode_syntax_all
-let g:pymode_syntax_highlight_self=g:pymode_syntax_all
-let g:pymode_syntax_indent_errors=g:pymode_syntax_all
-let g:pymode_syntax_string_formatting=g:pymode_syntax_all
-let g:pymode_syntax_space_errors=g:pymode_syntax_all
-let g:pymode_syntax_string_format=g:pymode_syntax_all
-let g:pymode_syntax_string_templates=g:pymode_syntax_all
-let g:pymode_syntax_doctests=g:pymode_syntax_all
-let g:pymode_syntax_builtin_objs=g:pymode_syntax_all
-let g:pymode_syntax_builtin_types=g:pymode_syntax_all
-let g:pymode_syntax_highlight_exceptions=g:pymode_syntax_all
-let g:pymode_syntax_docstrings=g:pymode_syntax_all
+"=====================================================
+"" Jedi settings
+"=====================================================
+let g:jedi#use_tabs_not_buffers = 1
 
-" rope - we turn everything off because it's ultra slow
-let g:pymode_rope=0
+
+"=====================================================
+"" Syntastic settings
+"=====================================================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8', 'pylint', 'pycodestyle']

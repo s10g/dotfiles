@@ -8,14 +8,11 @@ if [ ! -d "$VIMDIR" ]; then
     echo "Created directory: "$VIMDIR""
 fi
 
-#if [ ! -d "$VIMDIR/vim" ]; then
-#    mkdir -p "$VIMDIR/vim"
-#    echo "Created directory: "$VIMDIR""
-#fi
 
 git clone "$VUNDLE" "$VIMDIR/bundle/Vundle.vim"
 
-ln -sf "$(pwd)/vimrc" ~/.vimrc
+ln -sf vimrc ~/.vimrc
 echo "Created symlink: ~/.vimrc -> $(pwd)/vimrc"
 
+read -p "About to install the vim plugins. Vim will complain when it does this because the color scheme isn't installed yet. Just hit enter."
 vim +PluginInstall +qall
