@@ -38,9 +38,9 @@ fi
 
 # Installing Vim plugins...
 echo ""
-echo -e "\e[31mInstalling plugins using Vim (Vundle). Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter...\e[0m"
+echo -e "\e[31mInstalling plugins. Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter...\e[0m"
 vim +PluginInstall +qall
-
+echo "Plugins installed..."
 
 # Finished...
 echo ""
