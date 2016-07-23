@@ -3,6 +3,8 @@
 # Declaring some constants...
 PIP="https://bootstrap.pypa.io/get-pip.py"
 VUNDLE=https://github.com/VundleVim/Vundle.vim.git
+OURDIR=$(pwd)
+VUNDLEDIR=~/.vim/bundle/Vundle.vim
 
 
 # Making sure we want to run this script...
@@ -28,7 +30,8 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]
 then
     git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
 else
-    git --work-tree=~/.vim/bundle/Vundle.vim --git-dir=~/.vim/bundle/Vundle.vim/.git pull origin master
+    echo "Changing directory to "$VUNDLEDIR""
+    cd "$VUNDLEDIR"; echo "now in $(pwd)"; git pull; cd "$OURDIR"; echo "now in $(pwd)";
 fi
 
 
