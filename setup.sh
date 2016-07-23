@@ -25,6 +25,7 @@ ln -sf $(pwd)/minttyrc ~/.minttyrc
 
 
 # Cloning Vundle...
+echo ""
 echo -e "\e[31mCloning or pulling Vundle from github.com so we can install Vim plugins...\e[0m"
 if [ ! -d ~/.vim/bundle/Vundle.vim ]
 then
@@ -36,9 +37,11 @@ fi
 
 
 # Installing Vim plugins...
+echo ""
 echo -e "\e[31mInstalling plugins using Vim (Vundle). Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter...\e[0m"
 vim +PluginInstall +qall
 
 
 # Finished...
+echo ""
 echo -e "\e[31mFinished...\e[0m"
