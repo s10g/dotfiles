@@ -31,7 +31,7 @@ then
     git clone "$VUNDLE" "$VUNDLEDIR"
 else
     echo ""$VUNDLEDIR" already exists. Changing directory to "$VUNDLEDIR"..."
-    cd "$VUNDLEDIR"; echo "Now in $(pwd)..."; echo "Pulling..."; git pull; cd "$OURDIR"; echo "Now in $(pwd)...";
+    cd "$VUNDLEDIR"; echo "Now in $(pwd)..."; echo "Pulling..."; git pull; echo "Our work here is done. Going back..."; cd "$OURDIR"; echo "Now in $(pwd)...";
 fi
 
 
