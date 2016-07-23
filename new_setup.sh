@@ -5,7 +5,7 @@ VUNDLE=https://github.com/VundleVim/Vundle.vim.git
 
 
 
-echo -e "\e[31m--- Creating symlinks.\e[0m ---"
+echo -e "\e[31m--- Creating symlinks. ---\e[0m"
 echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
 ln -sf $(pwd)/vimrc ~/.vimrc
 
@@ -18,10 +18,10 @@ ln -sf $(pwd)/dir_colors ~/.dir_colors
 echo "Creating symlink: ~/.minttyrc -> $(pwd)/minttyrc"
 ln -sf $(pwd)/minttyrc ~/.minttyrc
 
-echo "\e[31m--- Fetching Vundle so we can install Vim plugins.\e[0m ---"
+echo -e "\e[31m--- Fetching Vundle so we can install Vim plugins. ---\e[0m"
 git clone "$VUNDLE" ~/.vim/bundle/Vundle.vim
 
-echo -e "\e[31m--- Installing plugins using Vim (Vundle). Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter.\e[0m ---"
+echo -e "\e[31m--- Installing plugins using Vim (Vundle). Vim will complain about missing color scheme wombat256mod. Ignore and just press Enter. ---\e[0m"
 vim +PluginInstall
 
 echo ""
