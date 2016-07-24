@@ -10,14 +10,18 @@ call vundle#begin()
     "-------------------=== Vundle itself ===-----------------------
     Plugin 'VundleVim/Vundle.vim'               " let Vundle manage Vundle, required
 
+
     "-------------------=== Code/Project navigation ===-------------
     Plugin 'kien/ctrlp.vim'                     " Fast transitions on project files
     Plugin 'tpope/vim-vinegar'                  " tpope's directory explorer
+    Plugin 'tpope/vim-fugitive'                 " tpope's fugitive
+
 
     "-------------------=== Other ===-------------------------------
     Plugin 'vim-airline/vim-airline'            " Lean & mean status/tabline for vim
     Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
     Plugin 'vim-scripts/wombat256.vim'          " The wombat256 theme
+
 
     "-------------------=== Snippets support ===--------------------
 
