@@ -20,7 +20,6 @@ call vundle#begin()
     "-------------------=== Other ===-------------------------------
     Plugin 'altercation/vim-colors-solarized'   " Theme
     Plugin 'vim-airline/vim-airline'            " Lean & mean status/tabline for vim
-    "Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
 
 
     "-------------------=== Snippets support ===--------------------
