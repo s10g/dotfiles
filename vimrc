@@ -68,14 +68,8 @@ set laststatus=2                            " which statusline mode we use
 "" Keyboard remaps
 "=====================================================
 inoremap jj <ESC>
-"nnoremap <leader>w <C-w>v<C-w>l
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-k> :bprev<CR>
-
 
 
 "=====================================================
