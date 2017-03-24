@@ -47,8 +47,10 @@ set cursorline
 set showmatch
 set clipboard=unnamed
 set number
-set relativenumber
 set scrolloff=10
+set splitbelow
+set splitright
+set hidden
 
 
 "# File recovery settings (most disabled because version control anyway)
