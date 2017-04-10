@@ -8,7 +8,9 @@ VUNDLEDIR=~/.vim/bundle/Vundle.vim
 
 # Making sure we want to run this script...
 echo "This script will set up Vim and plugins for you and symlink .vimrc to the correct file in your home. Hit Ctrl-c to abort or Enter to continue..."
-read -p ""
+echo -n "Enter 1 for the big vimrc file that includes the Solarized colour scheme and cursorline: "
+echo -n "Enter 2 for the smaller vimrc file which doesn't include theme or cursorline: "
+read choice
 
 
 # Creating symlinks...
