@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Declaring some constants...
 VUNDLE=https://github.com/VundleVim/Vundle.vim.git
