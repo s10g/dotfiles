@@ -7,11 +7,13 @@ VUNDLEDIR=~/.vim/bundle/Vundle.vim
 
 
 # Making sure we want to run this script...
-echo "This script will set up Vim and plugins for you and symlink .vimrc to the correct file in your home. Hit Ctrl-c to abort or Enter a choice to continue:"
-echo "1 - symlinks ~/.vimrc with Solarized colorscheme and cursorline to vimrc"
-echo "2 - symlinks ~/.vimrc to a more lightweight Vim environment without colorscheme or cursorline to vimrc-small"
+echo "This script will set up Vim and plugins for you and symlink ~/.vimrc to the selected vimrc file in this repo. Hit Ctrl-c to abort or enter a choice to continue:"
+echo "1 - vimrc - symlinks ~/.vimrc with Solarized colorscheme and cursorline to vimrc"
+echo "2 - vimrc-small - symlinks ~/.vimrc without Solarized colorscheme and cursorline to vimrc-small"
 echo -n "Option: "
 read choice
+
+echo ""
 
 case "$choice" in
         1)
