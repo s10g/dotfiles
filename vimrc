@@ -47,7 +47,7 @@ set cursorline
 set showmatch
 set clipboard=unnamed
 set number
-set scrolloff=10
+set scrolloff=2
 set splitbelow
 set splitright
 set hidden
