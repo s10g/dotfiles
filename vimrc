@@ -13,10 +13,11 @@ call vundle#begin()
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'itchyny/lightline.vim'
 
+    "## Plugins that augment functionality
+    Plugin 'tpope/vim-vinegar'
+    Plugin 'kien/ctrlp.vim'
 
     "## Plugins not decided on yet
-    "Plugin 'tpope/vim-vinegar'
-    "Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
