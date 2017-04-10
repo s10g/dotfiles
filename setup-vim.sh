@@ -7,17 +7,30 @@ VUNDLEDIR=~/.vim/bundle/Vundle.vim
 
 
 # Making sure we want to run this script...
-echo "This script will set up Vim and plugins for you and symlink .vimrc to the correct file in your home. Hit Ctrl-c to abort or Enter to continue..."
-echo -n "Enter 1 for the big vimrc file that includes the Solarized colour scheme and cursorline: "
-echo -n "Enter 2 for the smaller vimrc file which doesn't include theme or cursorline: "
+echo "This script will set up Vim and plugins for you and symlink .vimrc to the correct file in your home. Hit Ctrl-c to abort or Enter a choice to continue:"
+echo "1 - symlinks ~/.vimrc with Solarized colorscheme and cursorline to vimrc"
+echo "2 - symlinks ~/.vimrc to a more lightweight Vim environment without colorscheme or cursorline to vimrc-small"
+echo -n "Option: "
 read choice
 
+case "$choice" in
+        1)
+        # Creating symlinks...
+        echo "Creating symlinks..."
+        echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
+        ln -sf $(pwd)/vimrc ~/.vimrc
+        ;;
 
-# Creating symlinks...
-echo "Creating symlinks..."
-echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
-ln -sf $(pwd)/vimrc ~/.vimrc
-
+        2)
+        # Creating symlinks...
+        echo "Creating symlinks..."
+        echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc-small"
+        ln -sf $(pwd)/vimrc-small ~/.vimrc
+        ;;
+        *)
+        # Default option
+        ;;
+esac
 
 # Cloning Vundle...
 echo ""
