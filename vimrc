@@ -2,7 +2,13 @@ set nocompatible
 
 "# Vundle settings
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+
+if has('win32') || has('win64')
+    set rtp+=~/_vim/bundle/Vundle.vim
+else
+    set rtp+=~/.vim/bundle/Vundle.vim
+endif
+
 call vundle#begin()
 
     "## Plugins for basic Vim functionality including plugin management
@@ -11,7 +17,6 @@ call vundle#begin()
 
     "## Plugins for looks
     Plugin 'altercation/vim-colors-solarized'
-    Plugin 'itchyny/lightline.vim'
 
     "## Plugins that augment functionality
     Plugin 'tpope/vim-vinegar'
@@ -68,5 +73,3 @@ nnoremap <NUL> ?
 
 
 "# Plugin specific settings
-"## Lightline
-let g:lightline = { 'colorscheme': 'solarized' }
