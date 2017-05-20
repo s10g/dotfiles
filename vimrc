@@ -20,6 +20,7 @@ call vundle#begin()
 
     "## Plugins that augment functionality
     Plugin 'tpope/vim-vinegar'
+    Plugin 'tpope/vim-surround'
     Plugin 'kien/ctrlp.vim'
 
     "## Plugins not decided on yet
@@ -29,6 +30,7 @@ filetype plugin indent on
 
 "# Auto commands
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType yml setlocal shiftwidth=2 tabstop=2
 
 
 "# Look and theme settings
