@@ -30,7 +30,7 @@ filetype plugin indent on
 
 "# Auto commands
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType yml setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 
 "# Look and theme settings
