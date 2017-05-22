@@ -49,13 +49,12 @@ set hlsearch
 
 
 "# General behaviour settings
-set ttyfast
 set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
 set cursorline
-set showmatch
+set noshowmatch
 set clipboard=unnamed
 set number
 set splitbelow
