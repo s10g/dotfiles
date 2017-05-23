@@ -16,7 +16,6 @@ call vundle#begin()
     Plugin 'tpope/vim-sensible'
 
     "## Plugins for looks
-    Plugin 'altercation/vim-colors-solarized'
     Plugin 'romainl/flattened'
 
     "## Plugins that augment functionality
