@@ -17,11 +17,14 @@ call vundle#begin()
 
     "## Plugins for looks
     Plugin 'altercation/vim-colors-solarized'
+    Plugin 'romainl/flattened'
 
     "## Plugins that augment functionality
     Plugin 'tpope/vim-vinegar'
     Plugin 'tpope/vim-surround'
-    Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'alvan/vim-closetag'
+    Plugin 'Townk/vim-autoclose'
 
     "## Plugins not decided on yet
 
@@ -34,9 +37,8 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 
 "# Look and theme settings
-set background=dark
 set shortmess+=I
-colorscheme solarized
+colorscheme flattened_dark
 
 
 "# Searching and wildmenu settings
@@ -77,3 +79,4 @@ nnoremap <NUL> ?
 
 
 "# Plugin specific settings
+let g:AutoCloseExpandEnterOn="{"
