@@ -81,4 +81,5 @@ nnoremap <NUL> ?
 
 
 "# Plugin specific settings
+"## AutoClose settings
 let g:AutoCloseExpandEnterOn="{"
