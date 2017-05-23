@@ -31,9 +31,12 @@ call vundle#end()
 filetype plugin indent on
 
 "# Auto commands
+"## Change indentation levels for certain file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
+"## Change the working directory to that of the currently active buffer
+autocmd BufEnter * silent! lcd %:p:h
 
 "# Look and theme settings
 set shortmess+=I
