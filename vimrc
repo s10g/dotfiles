@@ -19,13 +19,13 @@ call vundle#begin()
     Plugin 'romainl/flattened'
 
     "## Plugins that augment functionality
-    Plugin 'tpope/vim-vinegar'
     Plugin 'tpope/vim-surround'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'alvan/vim-closetag'
     Plugin 'Townk/vim-autoclose'
 
     "## Plugins not decided on yet
+    "Plugin 'tpope/vim-vinegar'
 
 call vundle#end()
 filetype plugin indent on
@@ -36,7 +36,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 "## Change the working directory to that of the currently active buffer
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
 "# Look and theme settings
 set shortmess+=I
