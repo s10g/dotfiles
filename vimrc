@@ -17,6 +17,7 @@ call vundle#begin()
 
     "## Plugins for looks
     Plugin 'romainl/flattened'
+    Plugin 'Yggdroot/indentLine'
 
     "## Plugins that augment functionality
     Plugin 'tpope/vim-surround'
