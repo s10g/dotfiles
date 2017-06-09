@@ -27,5 +27,6 @@ Scrollbar=none
 Locale=C
 Charset=UTF-8
 CursorType=block
-Transparency=medium
+Transparency=off
 OpaqueWhenFocused=yes
+BoldAsFont=-1
