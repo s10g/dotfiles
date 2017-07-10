@@ -17,7 +17,7 @@ call vundle#begin()
 
     "## Plugins for looks
     Plugin 'romainl/flattened'
-    Plugin 'Yggdroot/indentLine'
+    "Plugin 'Yggdroot/indentLine'
 
     "## Plugins that augment functionality
     Plugin 'tpope/vim-surround'
@@ -42,6 +42,10 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 "# Look and theme settings
 set shortmess+=I
 colorscheme flattened_dark
+
+
+"GUI related settings; not using gvimrc as this is the only setting I use
+set guifont=Consolas:h11:cANSI:qDRAFT
 
 
 "# Searching and wildmenu settings
