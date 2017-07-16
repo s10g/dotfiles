@@ -45,6 +45,9 @@ set shortmess+=I
 "colorscheme flattened_dark
 colorscheme Apprentice
 set guifont=Consolas:h11:cANSI:qDRAFT
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
 
 "# Searching and wildmenu settings
 set path+=**
