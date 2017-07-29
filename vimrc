@@ -16,7 +16,6 @@ call vundle#begin()
     Plugin 'tpope/vim-sensible'
 
     "## Plugins for looks
-    Plugin 'romainl/flattened'
     Plugin 'romainl/Apprentice'
     Plugin 'Yggdroot/indentLine'
 
@@ -37,17 +36,18 @@ filetype plugin indent on
 "autocmd FileType html setlocal shiftwidth=2 tabstop=2
 "autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
-"## Change the working directory to that of the currently active buffer
-"autocmd BufEnter * silent! lcd %:p:h
 
 "# Look and theme settings
 set shortmess+=I
-"colorscheme flattened_dark
-colorscheme Apprentice
+colorscheme apprentice
+
+"# GUI stuff
 set guifont=Consolas:h11:cANSI:qDRAFT
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
+set lines=54 columns=250
+set linespace=4
 
 "# Searching and wildmenu settings
 set path+=**

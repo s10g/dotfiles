@@ -1,27 +1,20 @@
 #!/bin/bash
 
 # Declaring some constants...
-PIP="https://bootstrap.pypa.io/get-pip.py"
 VUNDLE=https://github.com/VundleVim/Vundle.vim.git
 OURDIR=$(pwd)
 VUNDLEDIR=~/.vim/bundle/Vundle.vim
 
 
 # Making sure we want to run this script...
-echo -e "\e[31mThis script will set up Vim and plugins for you and symlink some .dotfiles (.vimrc, .bashrc, .dir_colors, .minttyrc) in your home. Hit Ctrl-c to abort or Enter to continue...\e[0m"
+echo -e "\e[31mThis script will set up Vim and plugins for you and symlink .vimrc in your home. Hit Ctrl-c to abort or Enter to continue...\e[0m"
 read -p ""
 
 
-# Creating symlinks...
+# Creating symlink...
 echo -e "\e[31mCreating symlinks...\e[0m"
 echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
 ln -sf $(pwd)/vimrc ~/.vimrc
-echo "Creating symlink: ~/.bashrc -> $(pwd)/bashrc"
-ln -sf $(pwd)/bashrc ~/.bashrc
-echo "Creating symlink: ~/.dir_colors -> $(pwd)/dir_colors"
-ln -sf $(pwd)/dir_colors ~/.dir_colors
-echo "Creating symlink: ~/.minttyrc -> $(pwd)/minttyrc"
-ln -sf $(pwd)/minttyrc ~/.minttyrc
 
 
 # Cloning Vundle...
