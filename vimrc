@@ -46,7 +46,6 @@ set guifont=Consolas:h11:cANSI:qDRAFT
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
-set lines=54 columns=250
 set linespace=4
 
 "# Searching and wildmenu settings
