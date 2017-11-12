@@ -1,6 +1,7 @@
 set nocompatible
 
-"# Vundle settings
+
+"# Vundle settings --+ {{{
 filetype off
 
 if has('win32') || has('win64')
@@ -30,34 +31,49 @@ call vundle#begin()
 
 call vundle#end()
 filetype plugin indent on
+" }}}
 
-"# Auto commands
+
+"# Auto commands --+ {{{
 "## Change indentation levels for certain file types
 "autocmd FileType html setlocal shiftwidth=2 tabstop=2
 "autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
+"## Set foldmethod for this file
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
-"# Look and theme settings
+
+"# Look and theme settings --+ {{{
 set shortmess+=I
 colorscheme apprentice
+syntax off
+" }}}
 
-"# GUI stuff
+
+"# GUI stuff --+ {{{
 set guifont=Consolas:h11:cANSI:qDRAFT
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set linespace=4
+" }}}
 
-"# Searching and wildmenu settings
+
+"# Searching and wildmenu settings --+ {{{
 set path+=**
 set wildmode=list:longest,full
 set incsearch
 set ignorecase
 set smartcase
 set hlsearch
+" }}}
 
 
-"# General behaviour settings
+"# General behaviour settings --+  {{{
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -69,22 +85,26 @@ set number
 set splitbelow
 set splitright
 set hidden
+" }}}
 
 
-"# File recovery settings (most disabled because version control anyway)
+"# File recovery settings (most disabled because version control anyway) --+ {{{
 set nobackup
 set nowritebackup
 set noswapfile
+" }}}
 
 
-"# Keyboard remaps
+"# Keyboard remaps --+ {{{
 inoremap jj <ESC>
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-k> :bprev<CR>
 nnoremap <Space> /
 nnoremap <NUL> ?
+" }}}
 
 
-"# Plugin specific settings
+"# Plugin specific settings --+ {{{
 "## AutoClose settings
 let g:AutoCloseExpandEnterOn="{"
+" }}}
