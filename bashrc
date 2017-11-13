@@ -15,14 +15,8 @@ function work()
     cd /cygdrive/c/Users/stig/Desktop/projects/
 }
 
-function fuck()
-{
-    echo "fuck"
-}
-
 export -f home
 export -f work
-export -f fuck
 
 # Aliases
 alias ll="ls -l"
@@ -47,4 +41,3 @@ alias ls="ls --color"
 # the prompt
 #export PS1="\[\e[35m\]\u\[\e[m\]\[\e[35m\]@\[\e[m\]\[\e[35m\]\h\[\e[m\]\[\e[36m\]:\[\e[m\]\[\e[36m\]\w\[\e[m\] \[\e[33m\]\`parse_git_branch\`\[\e[m\]\\$ "
 #export PS1="\[\e[35m\]\u\[\e[m\]\[\e[35m\]@\[\e[m\]\[\e[35m\]\h\[\e[m\]\[\e[36m\]:\[\e[m\]\[\e[36m\]\w\[\e[m\] \[\e[33m\]\`parse_git_branch\`\[\e[m\]\[\e[32m\]\\$\[\e[m\] "
-
