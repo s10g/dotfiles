@@ -63,13 +63,15 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
-set cursorline
+"set cursorline
 set noshowmatch
 set clipboard=unnamed
 set number
 set splitbelow
 set splitright
 set hidden
+set lazyredraw
+set ttyfast
 
 
 "# File recovery settings (most disabled because version control anyway)
