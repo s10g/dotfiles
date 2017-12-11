@@ -25,6 +25,7 @@ call vundle#begin()
     Plugin 'alvan/vim-closetag'
     Plugin 'Townk/vim-autoclose'
     Plugin 's10g/vim-syncr'
+    Plugin 'scrooloose/nerdtree'
 
     "## Plugins not decided on yet
     "Plugin 'tpope/vim-vinegar'
@@ -89,6 +90,9 @@ nnoremap <NUL> ?
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>m :messages<cr>
+"nnoremap <F2> :NERDTreeToggle<cr>
+nmap <F2> :NERDTreeToggle<cr>
+
 
 "# Plugin specific settings
 "## AutoClose settings
