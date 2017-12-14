@@ -1,38 +1,37 @@
 set nocompatible
 
-"# Vundle settings
-filetype off
-
-if has('win32') || has('win64')
-    set rtp+=~/_vim/bundle/Vundle.vim
-else
-    set rtp+=~/.vim/bundle/Vundle.vim
+"# Acquire Vimplug automatically
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call vundle#begin()
+
+"# Vimplug settings
+call plug#begin('~/.vim/plugged')
 
     "## Plugins for basic Vim functionality including plugin management
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'tpope/vim-sensible'
+    Plug 'VundleVim/Vundle.vim'
+    Plug 'tpope/vim-sensible'
 
     "## Plugins for looks
-    Plugin 'romainl/Apprentice'
-    Plugin 'Yggdroot/indentLine'
+    Plug 'romainl/Apprentice'
+    Plug 'Yggdroot/indentLine'
 
     "## Plugins that augment functionality
-    Plugin 'tpope/vim-surround'
-    Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'alvan/vim-closetag'
-    Plugin 'Townk/vim-autoclose'
-    Plugin 's10g/vim-syncr'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'vimwiki/vimwiki'
+    Plug 'tpope/vim-surround'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'alvan/vim-closetag'
+    Plug 'Townk/vim-autoclose'
+    Plug 's10g/vim-syncr'
+    Plug 'scrooloose/nerdtree'
+    Plug 'vimwiki/vimwiki'
 
     "## Plugins not decided on yet
-    "Plugin 'tpope/vim-vinegar'
+    "Plug 'tpope/vim-vinegar'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 "# Auto commands
 "## Change indentation levels for certain file types
