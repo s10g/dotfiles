@@ -26,6 +26,7 @@ call vundle#begin()
     Plugin 'Townk/vim-autoclose'
     Plugin 's10g/vim-syncr'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'vimwiki/vimwiki'
 
     "## Plugins not decided on yet
     "Plugin 'tpope/vim-vinegar'
@@ -64,7 +65,6 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
-"set cursorline
 set noshowmatch
 set clipboard=unnamed
 set number
@@ -90,9 +90,12 @@ nnoremap <NUL> ?
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>m :messages<cr>
-"nnoremap <F2> :NERDTreeToggle<cr>
-nmap <F2> :NERDTreeToggle<cr>
-
+nnoremap <F2> :NERDTreeToggle<cr>
+nnoremap j gj
+nnoremap k gk
+nnoremap <leader>cl :set cursorline!<cr>
+nnoremap fg <C-z>
+nnoremap <leader>c <ESC>I<!-- <ESC>A --><ESC>
 
 "# Plugin specific settings
 "## AutoClose settings
