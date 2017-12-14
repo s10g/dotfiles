@@ -9,8 +9,6 @@ read -p ""
 echo -e "\e[31mCreating symlinks...\e[0m"
 echo "Creating symlink: ~/.minttyrc -> $(pwd)/minttyrc"
 ln -sf $(pwd)/minttyrc ~/.minttyrc
-echo "Creating symlink: ~/.dir_colors -> $(pwd)/dir_colors"
-ln -sf $(pwd)/dir_colors ~/.dir_colors
 echo "Creating symlink: ~/.bashrc -> $(pwd)/bashrc"
 ln -sf $(pwd)/bashrc ~/.bashrc
 echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
