@@ -17,9 +17,8 @@ ln -sf $(pwd)/vimrc ~/.vimrc
 
 # Installing Vim plugins...
 echo ""
-echo -e "\e[31mInstalling plugins. Vim might complain about missing color scheme. Ignore and just press Enter...\e[0m"
+echo -e "\e[31mSetting up Vim...\e[0m"
 vim +PlugInstall +qall
-echo "Plugins installed..."
 
 
 # Finished...
