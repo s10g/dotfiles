@@ -1,4 +1,6 @@
+"# Exit the 70s
 set nocompatible
+
 
 "# Acquire Vimplug automatically
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -15,6 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'VundleVim/Vundle.vim'
     Plug 'tpope/vim-sensible'
 
+    
     "## Plugins for looks
     Plug 'romainl/Apprentice'
     Plug 'Yggdroot/indentLine'
@@ -33,27 +36,18 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-"# Auto commands
-"## Change indentation levels for certain file types
-"autocmd FileType html setlocal shiftwidth=2 tabstop=2
-"autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
-
 
 "# Look and theme settings
 set shortmess+=I
 "colorscheme apprentice
 
-"# GUI stuff
-set guifont=Consolas:h11:cANSI:qDRAFT
-set guioptions-=m
-set guioptions-=T
-set guioptions-=r
-set linespace=4
 
-"# Searching and wildmenu settings
+"# Wildmenu settings
 set path+=**
 set wildmode=list:longest,full
-set incsearch
+
+
+"# Search settings
 set ignorecase
 set smartcase
 set hlsearch
@@ -62,7 +56,6 @@ set hlsearch
 "# General behaviour settings
 set tabstop=4
 set shiftwidth=4
-set smarttab
 set expandtab
 set noshowmatch
 set clipboard=unnamed
@@ -95,6 +88,7 @@ nnoremap k gk
 nnoremap <leader>cl :set cursorline!<cr>
 nnoremap fg <C-z>
 nnoremap <leader>c <ESC>I<!-- <ESC>A --><ESC>
+
 
 "# Plugin specific settings
 "## AutoClose settings
