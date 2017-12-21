@@ -41,7 +41,7 @@ call plug#end()
 
 "# Look and theme settings
 set shortmess+=I
-colorscheme apprentice
+"colorscheme apprentice
 
 "# GUI stuff
 set guifont=Consolas:h11:cANSI:qDRAFT
