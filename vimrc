@@ -16,7 +16,6 @@ call plug#begin('~/.vim/plugged')
     "## Plugins for basic Vim functionality including plugin management
     Plug 'VundleVim/Vundle.vim'
     Plug 'tpope/vim-sensible'
-
     
     "## Plugins for looks
     Plug 'romainl/Apprentice'
@@ -88,6 +87,16 @@ nnoremap k gk
 nnoremap <leader>cl :set cursorline!<cr>
 nnoremap fg <C-z>
 nnoremap <leader>c <ESC>I<!-- <ESC>A --><ESC>
+"## Move up and down by paragraph using backspace and enter in normal mode
+nnoremap <BS> {
+onoremap <BS> {
+vnoremap <BS> {
+nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+vnoremap <CR> }
+"## Keep selected text selected when fixing indentation
+vnoremap < <gv
+vnoremap > >gv
 
 
 "# Plugin specific settings
