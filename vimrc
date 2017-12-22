@@ -28,7 +28,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'Townk/vim-autoclose'
     Plug 's10g/vim-syncr'
     Plug 'scrooloose/nerdtree'
-    Plug 'vimwiki/vimwiki'
 
     "## Plugins not decided on yet
     "Plug 'tpope/vim-vinegar'
@@ -38,7 +37,7 @@ call plug#end()
 
 "# Look and theme settings
 set shortmess+=I
-"colorscheme apprentice
+colorscheme apprentice
 
 
 "# Wildmenu settings
