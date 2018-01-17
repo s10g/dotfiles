@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugged')
     
     "## Plugins for looks
     Plug 'romainl/Apprentice'
-    Plug 'Yggdroot/indentLine'
 
     "## Plugins that augment functionality
     Plug 'tpope/vim-surround'
@@ -28,6 +27,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Townk/vim-autoclose'
     Plug 's10g/vim-syncr'
     Plug 'scrooloose/nerdtree'
+    Plug 'https://github.com/plan9-for-vimspace/acme-colors'
 
     "## Plugins not decided on yet
     "Plug 'tpope/vim-vinegar'
@@ -37,7 +37,7 @@ call plug#end()
 
 "# Look and theme settings
 set shortmess+=I
-colorscheme apprentice
+colorscheme acme
 
 
 "# Wildmenu settings
