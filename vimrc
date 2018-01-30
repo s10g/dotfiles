@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Townk/vim-autoclose'
     Plug 's10g/vim-syncr'
     Plug 'scrooloose/nerdtree'
-    Plug 'https://github.com/plan9-for-vimspace/acme-colors'
+    Plug 'thenewvu/vim-colors-sketching'
 
     "## Plugins not decided on yet
     "Plug 'tpope/vim-vinegar'
@@ -37,7 +37,9 @@ call plug#end()
 
 "# Look and theme settings
 set shortmess+=I
-colorscheme acme
+set termguicolors
+colorscheme sketching
+syntax off
 
 
 "# Wildmenu settings
