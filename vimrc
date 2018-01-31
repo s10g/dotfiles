@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 
     "## Plugins for basic Vim functionality including plugin management
     Plug 'VundleVim/Vundle.vim'
-    Plug 'tpope/vim-sensible'
+    Plug 's10g/vim-sensible'
     
     "## Plugins for looks
     Plug 'romainl/Apprentice'
@@ -27,8 +27,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'Townk/vim-autoclose'
     Plug 's10g/vim-syncr'
     Plug 'scrooloose/nerdtree'
-    Plug 'thenewvu/vim-colors-sketching'
-
+    Plug 'pbrisbin/vim-colors-off'
+    
     "## Plugins not decided on yet
     "Plug 'tpope/vim-vinegar'
 
@@ -38,8 +38,9 @@ call plug#end()
 "# Look and theme settings
 set shortmess+=I
 set termguicolors
-colorscheme sketching
+set background=light
 syntax off
+colorscheme off
 
 
 "# Wildmenu settings
