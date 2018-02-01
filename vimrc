@@ -37,7 +37,6 @@ call plug#end()
 
 "# Look and theme settings
 set shortmess+=I
-set termguicolors
 set background=light
 syntax off
 colorscheme off
