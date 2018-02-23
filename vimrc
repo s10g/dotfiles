@@ -3,12 +3,11 @@ set nocompatible
 
 
 "# Acquire Vimplug automatically
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 
 "# Vimplug settings
 call plug#begin('~/.vim/plugged')
@@ -38,7 +37,7 @@ call plug#end()
 "# Look and theme settings
 set shortmess+=I
 set background=light
-syntax off
+syntax on
 colorscheme off
 
 

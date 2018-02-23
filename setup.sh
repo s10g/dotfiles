@@ -1,27 +1,108 @@
-#!/bin/bash
+#!/bin/sh
 
-# Making sure we want to run this script...
-echo -e "\e[31mThis script will set up bash and vim according to my taste. Hit Ctrl-c to abort or Enter to continue...\e[0m"
-read -p ""
-
-
-# Creating symlink...
-echo -e "\e[31mCreating symlinks...\e[0m"
-echo "Creating symlink: ~/.minttyrc -> $(pwd)/minttyrc"
-ln -sf $(pwd)/minttyrc ~/.minttyrc
-echo "Creating symlink: ~/.bashrc -> $(pwd)/bashrc"
-ln -sf $(pwd)/bashrc ~/.bashrc
-echo "Creating symlink: ~/.vimrc -> $(pwd)/vimrc"
-ln -sf $(pwd)/vimrc ~/.vimrc
+# This script will symlink dotfiles and set up Vim/Neovim with plugins. It can 
+# target cygwin, linux and openbsd.
+#
+# Cygwin: sets up mintty and bash and vim
+# Linux: sets up bash and Neovim
+# OpenBSD: sets up ksh, X server stuff, Neovim
+#
+# The script can be run interactively (if ran without arguments) or with one of
+# [cygwin|linux|openbsd] as argument.
 
 
-# Installing Vim plugins...
-echo ""
-echo -e "\e[31mSetting up Vim...\e[0m"
-vim +PlugInstall +qall
+# CONSTANTS
+VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
+VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 
 
-# Finished...
-echo ""
-echo -e "\e[31mFinished...\e[0m"
-echo -e "\e[31mLogout from this terminal and start a new terminal to activate the new changes...\e[0m"
+
+# FUNCTIONS
+install_vimplug()
+{
+    _version=$(vim --version | head -1 | cut -f 1 -d " ")
+
+    if [ ${_version} = 'VIM' ]; then
+        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    elif [ ${_version} = 'NVIM' ]; then
+        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    else
+        echo "Cannot determine if we are installing vim-plug for Vim or Neovim. Exiting..."
+        exit 1
+    fi
+}
+
+prompt()
+{
+cat <<EOF
+Select which system to set up for
+=================================
+1. cygwin
+2. linux
+3. openbsd
+0. exit
+EOF
+
+    read -p "Enter choice: " _choice
+    case ${_choice} in
+        1) setup cygwin;;
+        2) setup linux;;
+        3) setup openbsd;;
+        0) exit 0;;
+        *) echo ""; echo "Choice not recognized."; echo ""; prompt;;
+    esac
+}
+
+setup()
+{
+    case $1 in
+        cygwin)
+            # symlinks
+            echo "Installing symlinks..."
+            #echo 'ln -sf $(pwd)/minttyrc ~/.minttyrc'
+            #echo 'ln -sf $(pwd)/bashrc ~/.bashrc'
+            #echo 'ln -sf $(pwd)/vimrc ~/.vimrc'
+
+            # vimplug
+            echo "Installing vim-plug..."
+            install_vimplug
+
+            # Run Vim/Neovim to install plugins
+            echo "Installing plugins..."
+            vim +PlugInstall +qall
+
+            # exit
+            echo "Done..."
+            ;;
+        linux)
+            echo "linux!"
+            ;;
+        openbsd)
+            echo "openbsd!"
+            ;;
+        *)
+            echo "Not a valid setup target. Exiting..."
+            exit 1
+    esac
+}
+
+
+
+
+# MAIN
+# Check if we are running interactively or not. Control the flow accordingly.
+if [ $# -eq 0 ]; then
+    prompt
+elif [ $# -eq 1 ]; then
+    setup $1
+else
+    echo 'Usage: ./setup.sh [cygwin|linux|openbsd]'
+    exit 1
+fi
+
+
+
+
+
+# Inform the user about the script's completion and further steps
