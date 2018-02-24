@@ -25,8 +25,10 @@ install_vimplug()
 
     if [ ${_version} = 'VIM' ]; then
         curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        echo "Found Vim"
     elif [ ${_version} = 'NVIM' ]; then
         curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        echo "Found Neovim"
     else
         echo "Cannot determine if we are installing vim-plug for Vim or Neovim. Exiting..."
         exit 1
