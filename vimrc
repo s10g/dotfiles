@@ -30,7 +30,7 @@ call plug#end()
 "# Look and theme settings
 set shortmess+=I
 set background=light
-syntax on
+syntax off
 colorscheme off
 
 
