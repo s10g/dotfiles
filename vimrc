@@ -99,6 +99,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 
+
 "# Plugin specific settings
 "## AutoClose settings
 let g:AutoCloseExpandEnterOn="{"

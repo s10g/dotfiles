@@ -5,11 +5,6 @@
 
 
 # Functions to quickly take me to often used directories
-function home()
-{
-    cd ~
-}
-
 function work()
 {
     cd /cygdrive/c/Users/stig/Desktop/projects/

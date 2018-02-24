@@ -11,14 +11,14 @@
 # [cygwin|linux|openbsd] as argument.
 
 
-# CONSTANTS
+### CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 
 
 
-# FUNCTIONS
+### FUNCTIONS
 install_vimplug()
 {
     _version=$(vim --version | head -1 | cut -f 1 -d " ")
@@ -60,9 +60,9 @@ setup()
         cygwin)
             # symlinks
             echo "Installing symlinks..."
-            #echo 'ln -sf $(pwd)/minttyrc ~/.minttyrc'
-            #echo 'ln -sf $(pwd)/bashrc ~/.bashrc'
-            #echo 'ln -sf $(pwd)/vimrc ~/.vimrc'
+            ln -sf $(pwd)/minttyrc ${HOME}/.minttyrc
+            ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
+            ln -sf $(pwd)/vimrc ${HOME}/.vimrc
 
             # vimplug
             echo "Installing vim-plug..."
@@ -75,12 +75,29 @@ setup()
             # exit
             echo "Done..."
             ;;
+
         linux)
-            echo "linux!"
+            # symlinks
+            echo "Installing symlinks..."
+            #ln -sf $(pwd)/bashrc.linux ~/.bashrc'
+            #ln -sf $(pwd)/vimrc ~/.vimrc'
+
+            # vimplug
+            echo "Installing vim-plug..."
+            #install_vimplug
+
+            # Run Vim/Neovim to install plugins
+            echo "Installing plugins..."
+            #vim +PlugInstall +qall
+
+            # exit
+            echo "Done..."
             ;;
+
         openbsd)
             echo "openbsd!"
             ;;
+
         *)
             echo "Not a valid setup target. Exiting..."
             exit 1
@@ -92,6 +109,11 @@ setup()
 
 # MAIN
 # Check if we are running interactively or not. Control the flow accordingly.
+
+# Preliminary checks goes here: check for vim or nvim exit if neither is found with informational 
+# message, check for curl > v7.24.0 exit if neither is found with informational message
+
+
 if [ $# -eq 0 ]; then
     prompt
 elif [ $# -eq 1 ]; then
@@ -100,9 +122,3 @@ else
     echo 'Usage: ./setup.sh [cygwin|linux|openbsd]'
     exit 1
 fi
-
-
-
-
-
-# Inform the user about the script's completion and further steps
