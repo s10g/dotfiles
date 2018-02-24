@@ -65,7 +65,9 @@ setup()
             echo "Installing symlinks..."
             ln -sf $(pwd)/minttyrc ${HOME}/.minttyrc
             ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
+            . ${HOME}/.bashrc # source it right away so aliases - if any - works
             ln -sf $(pwd)/vimrc ${HOME}/.vimrc
+            
 
             # vimplug
             echo "Installing vim-plug..."
@@ -83,6 +85,7 @@ setup()
             # symlinks
             echo "Installing symlinks..."
             ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
+            . ${HOME}/.bashrc # source it right away so aliases - if any - works
             ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
 
             # vimplug
