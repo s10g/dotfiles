@@ -10,7 +10,6 @@ function work()
     cd /cygdrive/c/Users/stig/Desktop/projects/
 }
 
-export -f home
 export -f work
 
 # Aliases
