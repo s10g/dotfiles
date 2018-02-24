@@ -33,6 +33,7 @@ install_vimplug()
     fi
 }
 
+
 prompt()
 {
 cat <<EOF
@@ -79,16 +80,16 @@ setup()
         linux)
             # symlinks
             echo "Installing symlinks..."
-            #ln -sf $(pwd)/bashrc.linux ~/.bashrc'
-            #ln -sf $(pwd)/vimrc ~/.vimrc'
+            ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
+            ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
 
             # vimplug
             echo "Installing vim-plug..."
-            #install_vimplug
+            install_vimplug
 
             # Run Vim/Neovim to install plugins
             echo "Installing plugins..."
-            #vim +PlugInstall +qall
+            vim +PlugInstall +qall
 
             # exit
             echo "Done..."
