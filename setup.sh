@@ -117,8 +117,15 @@ setup() {
             ;;
 
         openbsd)
-            echo "openbsd!"
-            echo "symlinks!"
+            # symlinks
+            if [ -d ${HOME}/.config/nvim ]; then
+                echo "Directory found. Symlinking *vim config file..."
+                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
+            else
+                echo "Directory not found. Creating directory..."
+                mkdir -p ${HOME}/.config/nvim
+                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
+            fi
 
             # vimplug
             echo "Installing vim-plug..."
