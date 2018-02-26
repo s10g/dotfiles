@@ -15,6 +15,8 @@
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
+VIM_VERSION="n/a"
+
 
 
 
@@ -22,7 +24,10 @@ VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 install_vimplug() {
     # Check for installed *vims and prioritise Neovim over Vim
     if [ -e /usr/bin/nvim ]; then
+        echo "VIM_VERSION contains: ${VIM_VERSION}"
         echo "we have nvim"
+        VIM_VERSION=/usr/bin/nvim
+        echo "VIM_VERSION contains: ${VIM_VERSION}"
     elif [ -e /usr/bin/vim ]; then
         echo "we have vim"
     else
@@ -130,6 +135,7 @@ if [ $# -eq 0 ]; then
     prompt
 elif [ $# -eq 1 ]; then
     setup $1
+    echo $VIM_VERSION
 else
     echo 'Usage: ./setup.sh [cygwin|linux|openbsd]'
     exit 1
