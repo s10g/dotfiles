@@ -116,6 +116,7 @@ setup() {
 
         openbsd)
             # symlinks
+            echo "Installing symlinks."
             if [ -d ${HOME}/.config/nvim ]; then
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
             else
