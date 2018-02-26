@@ -19,37 +19,24 @@ VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 VIM_BINARY=/usr/bin/vim
 NVIM_BINARY=/usr/bin/nvim
 
-VIM_VERSION=""
+VIM_TYPE=""
 
 
 ### FUNCTIONS
 install_vimplug() {
     # Check for installed *vim type and prioritise Neovim over Vim
     if [ -e ${NVIM_BINARY} ]; then
-        VIM_VERSION=${NVIM_BINARY}
-        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        VIM_TYPE=${NVIM_BINARY}
+        curl -fLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
         echo "Found Neovim"
     elif [ -e ${VIM_BINARY} ]; then
-        VIM_VERSION=${VIM_BINARY}
-        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        VIM_TYPE=${VIM_BINARY}
+        curl -fLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
         echo "Found Vim"
     else
         echo "Neither Neovim nor Vim found. Exiting..."
         exit 1
     fi
-
-    #_version=$(vim --version | head -1 | cut -f 1 -d " ")
-
-    #if [ ${_version} = 'VIM' ]; then
-    #    curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-    #    echo "Found Vim"
-    #elif [ ${_version} = 'NVIM' ]; then
-    #    curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-    #    echo "Found Neovim"
-    #else
-    #    echo "Cannot determine if we are installing vim-plug for Vim or Neovim. Exiting..."
-    #    exit 1
-    #fi
 }
 
 
@@ -89,7 +76,7 @@ setup() {
 
             # Run Vim/Neovim to install plugins
             echo "Installing plugins..."
-            vim +PlugInstall +qall
+            ${VIM_TYPE} +PlugInstall +qall
 
             # exit
             echo "Done..."
@@ -99,7 +86,6 @@ setup() {
             # symlinks
             echo "Installing symlinks..."
             ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
-            alias vim="nvim"
             mkdir -p ${HOME}/.config/nvim/
             ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
 
@@ -109,7 +95,7 @@ setup() {
 
             # Run Vim/Neovim to install plugins
             echo "Installing plugins..."
-            vim +PlugInstall +qall
+            ${VIM_TYPE} +PlugInstall +qall
 
             # exit
             echo "Done..."
