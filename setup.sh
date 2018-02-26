@@ -16,8 +16,11 @@ VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 
-VIM_BINARY=/usr/bin/vim
-NVIM_BINARY=/usr/bin/nvim
+VIM_BINARY_LINUX=/usr/bin/vim
+NVIM_BINARY_LINUX=/usr/bin/nvim
+
+VIM_BINARY_OPENBSD=/usr/local/bin/vim
+NVIM_BINARY_OPENBSD=/usr/local/bin/nvim
 
 VIM_TYPE=""
 
@@ -25,14 +28,25 @@ VIM_TYPE=""
 ### FUNCTIONS
 install_vimplug() {
     # Check for installed *vim type and prioritise Neovim over Vim
-    if [ -e ${NVIM_BINARY} ]; then
-        VIM_TYPE=${NVIM_BINARY}
+
+    if [ -e ${NVIM_BINARY_LINUX} ]; then
+        VIM_TYPE=${NVIM_BINARY_LINUX}
         curl -fLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-        echo "Found Neovim"
-    elif [ -e ${VIM_BINARY} ]; then
-        VIM_TYPE=${VIM_BINARY}
+
+    elif [ -e ${NVIM_BINARY_OPENBSD} ]; then
+        VIM_TYPE=${NVIM_BINARY_OPENBSD}
+        curl -fLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        echo "Found NeoVim on openbsd"
+
+    elif [ -e ${VIM_BINARY_LINUX} ]; then
+        VIM_TYPE=${VIM_BINARY_LINUX}
         curl -fLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-        echo "Found Vim"
+
+    elif [ -e ${VIM_BINARY_OPENBSD} ]; then
+        VIM_TYPE=${VIM_BINARY_OPENBSD}
+        curl -fLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        echo "Found Vim on openbsd"
+
     else
         echo "Neither Neovim nor Vim found. Exiting..."
         exit 1
@@ -103,6 +117,11 @@ setup() {
 
         openbsd)
             echo "openbsd!"
+            echo "symlinks!"
+
+            # vimplug
+            echo "Installing vim-plug..."
+            install_vimplug
             ;;
 
         *)
