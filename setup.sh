@@ -114,6 +114,9 @@ setup() {
         openbsd)
             # symlinks
             echo "Installing symlinks."
+            ln -sf $(pwd)/Xdefaults ${HOME}/.Xdefaults
+            ln -sf $(pwd)/xsession ${HOME}/.xsession
+            ln -sf $(pwd)/profile ${HOME}/.profile
             if [ -d ${HOME}/.config/nvim ]; then
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
             else
