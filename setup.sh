@@ -19,25 +19,32 @@ VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 
 
 ### FUNCTIONS
-install_vimplug()
-{
-    _version=$(vim --version | head -1 | cut -f 1 -d " ")
-
-    if [ ${_version} = 'VIM' ]; then
-        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-        echo "Found Vim"
-    elif [ ${_version} = 'NVIM' ]; then
-        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-        echo "Found Neovim"
+install_vimplug() {
+    # Check for installed *vims and prioritise Neovim over Vim
+    if [ -e /usr/bin/nvim ]; then
+        echo "we have nvim"
+    elif [ -e /usr/bin/vim ]; then
+        echo "we have vim"
     else
-        echo "Cannot determine if we are installing vim-plug for Vim or Neovim. Exiting..."
-        exit 1
+        echo "neither neovim nor vim found"
     fi
+
+    #_version=$(vim --version | head -1 | cut -f 1 -d " ")
+
+    #if [ ${_version} = 'VIM' ]; then
+    #    curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    #    echo "Found Vim"
+    #elif [ ${_version} = 'NVIM' ]; then
+    #    curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    #    echo "Found Neovim"
+    #else
+    #    echo "Cannot determine if we are installing vim-plug for Vim or Neovim. Exiting..."
+    #    exit 1
+    #fi
 }
 
 
-prompt()
-{
+prompt() {
 cat <<EOF
 Select which system to set up for
 =================================
@@ -57,8 +64,7 @@ EOF
     esac
 }
 
-setup()
-{
+setup() {
     case $1 in
         cygwin)
             # symlinks
