@@ -41,7 +41,7 @@ install_vimplug() {
         VIM_TYPE=${OPENBSD_VIM_BINARY}
         curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
     else
-        echo "Neither Neovim nor Vim found. Ex(c)iting..."
+        echo "Neither Neovim nor Vim found. Ex(c)iting."
         exit 1
     fi
 }
@@ -52,7 +52,7 @@ cat <<EOF
 Select which system to set up for
 =================================
 1. Cygwin
-2. GNU/Linux
+2. Linux
 3. OpenBSD
 
 0. Exit
@@ -74,26 +74,26 @@ setup() {
     case ${1} in
         cygwin)
             # symlinks
-            echo "Installing symlinks..."
+            echo "Installing symlinks."
             ln -sf $(pwd)/minttyrc ${HOME}/.minttyrc
             ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
             ln -sf $(pwd)/vimrc ${HOME}/.vimrc
             
             # vimplug
-            echo "Installing vim-plug..."
+            echo "Installing vim-plug."
             install_vimplug
 
             # Run Vim/Neovim to install plugins
-            echo "Installing plugins..."
+            echo "Installing plugins."
             ${VIM_TYPE} +PlugInstall +qall
 
             # exit
-            echo "Done..."
+            echo "Done."
             ;;
 
         linux)
             # symlinks
-            echo "Installing symlinks..."
+            echo "Installing symlinks."
             ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
             if [ -d ${HOME}/.config/nvim ]; then
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
@@ -103,39 +103,40 @@ setup() {
             fi
 
             # vimplug
-            echo "Installing vim-plug..."
+            echo "Installing vim-plug."
             install_vimplug
 
             # Run Vim/Neovim to install plugins
-            echo "Installing plugins..."
+            echo "Installing plugins."
             ${VIM_TYPE} +PlugInstall +qall
 
             # exit
-            echo "Done..."
+            echo "Done."
             ;;
 
         openbsd)
             # symlinks
             if [ -d ${HOME}/.config/nvim ]; then
-                echo "Directory found. Symlinking *vim config file..."
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
             else
-                echo "Directory not found. Creating directory..."
                 mkdir -p ${HOME}/.config/nvim
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
             fi
 
             # vimplug
-            echo "Installing vim-plug..."
+            echo "Installing vim-plug."
             install_vimplug
 
             # Run Vim/Neovim to install plugins
-            echo "Installing plugins..."
+            echo "Installing plugins."
             ${VIM_TYPE} +PlugInstall +qall
+
+            # exit
+            echo "Done."
             ;;
 
         *)
-            echo "Not a valid setup target. Exiting..."
+            echo "Not a valid setup target. Exiting."
             exit 1
     esac
 }
