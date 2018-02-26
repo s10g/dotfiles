@@ -64,7 +64,8 @@ Select which system to set up for
 0. exit
 EOF
 
-    read -p "Enter choice: " _choice
+    echo -n "Enter choice: "
+    read _choice
     case ${_choice} in
         1) setup cygwin;;
         2) setup linux;;
@@ -122,6 +123,10 @@ setup() {
             # vimplug
             echo "Installing vim-plug..."
             install_vimplug
+
+            # Run Vim/Neovim to install plugins
+            echo "Installing plugins..."
+            ${VIM_TYPE} +PlugInstall +qall
             ;;
 
         *)
