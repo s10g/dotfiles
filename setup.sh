@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-### CONSTANTS
+# CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 VIMPLUG_NVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
@@ -13,7 +13,7 @@ CURL_OPTIONS="-sSfLo"
 VIM_TYPE=
 
 
-### FUNCTIONS
+# FUNCTIONS
 install_vimplug() {
     # Check for curl version greater than v7.24.0.
     _curl_version=$(curl --version | head -1 | cut -f 2 -d " ")
@@ -48,7 +48,7 @@ install_vimplug() {
 prompt() {
 cat <<EOF
 Select which system to set up for
-=================================
+
 1. Cygwin
 2. Linux
 3. OpenBSD
@@ -143,7 +143,7 @@ setup() {
 }
 
 
-### MAIN
+# MAIN
 if [ $# -eq 0 ]; then
     prompt
 elif [ $# -eq 1 ]; then
