@@ -28,11 +28,11 @@ VIM_TYPE=""
 ### FUNCTIONS
 install_vimplug() {
     # Check for installed *vim type and prioritize Neovim over Vim
-    if [ -e ${NLINUX_VIM_BINARY} ]; then
-        VIM_TYPE=${NLINUX_VIM_BINARY}
+    if [ -e ${LINUX_NVIM_BINARY} ]; then
+        VIM_TYPE=${LINUX_NVIM_BINARY}
         curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-    elif [ -e ${NOPENBSD_VIM_BINARY} ]; then
-        VIM_TYPE=${NOPENBSD_VIM_BINARY}
+    elif [ -e ${OPENBSD_NVIM_BINARY} ]; then
+        VIM_TYPE=${OPENBSD_NVIM_BINARY}
         curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
     elif [ -e ${LINUX_VIM_BINARY} ]; then
         VIM_TYPE=${LINUX_VIM_BINARY}
