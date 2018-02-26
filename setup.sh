@@ -1,38 +1,26 @@
 #!/bin/sh
 
-# This script will symlink dotfiles and set up Vim/Neovim with plugins. It can 
-# target cygwin, linux and openbsd.
-#
-# Cygwin: sets up mintty and bash and vim
-# Linux: sets up bash and Neovim
-# OpenBSD: sets up ksh, X server stuff, Neovim
-#
-# The script can be run interactively (if ran without arguments) or with one of
-# [cygwin|linux|openbsd] as argument.
-
 
 ### CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 VIMPLUG_NVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
-
 LINUX_VIM_BINARY=/usr/bin/vim
 LINUX_NVIM_BINARY=/usr/bin/nvim
-
 OPENBSD_VIM_BINARY=/usr/local/bin/vim
 OPENBSD_NVIM_BINARY=/usr/local/bin/nvim
-
+CURL_OPTIONS="-sSfLo"
 VIM_TYPE=
 
-CURL_OPTIONS="-sSfLo"
 
 ### FUNCTIONS
 install_vimplug() {
     # Check for curl version greater than v7.24.0.
-    _curl_main_ver=$(curl --version | head -1 | cut -f 2 -d " " | cut -d . -f 1)
-    _curl_release_ver=$(curl --version | head -1 | cut -f 2 -d " " | cut -d . -f 2)
+    _curl_version=$(curl --version | head -1 | cut -f 2 -d " ")
+    _curl_main_version=$(echo ${_curl_version} | head -1 | cut -d . -f 1)
+    _curl_release_version=$(echo ${_curl_version} | head -1 | cut -d . -f 2)
 
-    if [ ${_curl_main_ver} -ge 7 ] && [ ${_curl_release_ver} -ge 24 ]; then
+    if [ ${_curl_main_version} -ge 7 ] && [ ${_curl_release_version} -ge 24 ]; then
         :
     else
         CURL_OPTIONS=-fLo
@@ -57,7 +45,6 @@ install_vimplug() {
     fi
 }
 
-
 prompt() {
 cat <<EOF
 Select which system to set up for
@@ -79,7 +66,6 @@ EOF
         *) echo ""; echo "Choice not recognized."; echo ""; prompt;;
     esac
 }
-
 
 setup() {
     case ${1} in
@@ -154,14 +140,7 @@ setup() {
 }
 
 
-
-
-# MAIN
-# Check if we are running interactively or not. Control the flow accordingly.
-
-# Preliminary checks goes here: check for vim or nvim exit if neither is found with informational 
-
-
+### MAIN
 if [ $# -eq 0 ]; then
     prompt
 elif [ $# -eq 1 ]; then
