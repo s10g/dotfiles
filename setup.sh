@@ -14,7 +14,7 @@
 ### CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
-VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
+VIMPLUG_NVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 
 LINUX_VIM_BINARY=/usr/bin/vim
 LINUX_NVIM_BINARY=/usr/bin/nvim
@@ -22,24 +22,35 @@ LINUX_NVIM_BINARY=/usr/bin/nvim
 OPENBSD_VIM_BINARY=/usr/local/bin/vim
 OPENBSD_NVIM_BINARY=/usr/local/bin/nvim
 
-VIM_TYPE=""
+VIM_TYPE=
 
+CURL_OPTIONS="-sSfLo"
 
 ### FUNCTIONS
 install_vimplug() {
+    # Check for curl version greater than v7.24.0.
+    _curl_main_ver=$(curl --version | head -1 | cut -f 2 -d " " | cut -d . -f 1)
+    _curl_release_ver=$(curl --version | head -1 | cut -f 2 -d " " | cut -d . -f 2)
+
+    if [ ${_curl_main_ver} -ge 7 ] && [ ${_curl_release_ver} -ge 24 ]; then
+        break
+    else
+        CURL_OPTIONS=-fLo
+    fi
+
     # Check for installed *vim type and prioritize Neovim over Vim
     if [ -e ${LINUX_NVIM_BINARY} ]; then
         VIM_TYPE=${LINUX_NVIM_BINARY}
-        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     elif [ -e ${OPENBSD_NVIM_BINARY} ]; then
         VIM_TYPE=${OPENBSD_NVIM_BINARY}
-        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     elif [ -e ${LINUX_VIM_BINARY} ]; then
         VIM_TYPE=${LINUX_VIM_BINARY}
-        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     elif [ -e ${OPENBSD_VIM_BINARY} ]; then
         VIM_TYPE=${OPENBSD_VIM_BINARY}
-        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+        curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     else
         echo "Neither Neovim nor Vim found. Ex(c)iting."
         exit 1
@@ -149,7 +160,6 @@ setup() {
 # Check if we are running interactively or not. Control the flow accordingly.
 
 # Preliminary checks goes here: check for vim or nvim exit if neither is found with informational 
-# message, check for curl > v7.24.0 exit if neither is found with informational message
 
 
 if [ $# -eq 0 ]; then
