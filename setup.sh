@@ -16,39 +16,32 @@ VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 VIMPLUG_NEOVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 
-VIM_BINARY_LINUX=/usr/bin/vim
-NVIM_BINARY_LINUX=/usr/bin/nvim
+LINUX_VIM_BINARY=/usr/bin/vim
+LINUX_NVIM_BINARY=/usr/bin/nvim
 
-VIM_BINARY_OPENBSD=/usr/local/bin/vim
-NVIM_BINARY_OPENBSD=/usr/local/bin/nvim
+OPENBSD_VIM_BINARY=/usr/local/bin/vim
+OPENBSD_NVIM_BINARY=/usr/local/bin/nvim
 
 VIM_TYPE=""
 
 
 ### FUNCTIONS
 install_vimplug() {
-    # Check for installed *vim type and prioritise Neovim over Vim
-
-    if [ -e ${NVIM_BINARY_LINUX} ]; then
-        VIM_TYPE=${NVIM_BINARY_LINUX}
-        curl -fLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-
-    elif [ -e ${NVIM_BINARY_OPENBSD} ]; then
-        VIM_TYPE=${NVIM_BINARY_OPENBSD}
-        curl -fLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-        echo "Found NeoVim on openbsd"
-
-    elif [ -e ${VIM_BINARY_LINUX} ]; then
-        VIM_TYPE=${VIM_BINARY_LINUX}
-        curl -fLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-
-    elif [ -e ${VIM_BINARY_OPENBSD} ]; then
-        VIM_TYPE=${VIM_BINARY_OPENBSD}
-        curl -fLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
-        echo "Found Vim on openbsd"
-
+    # Check for installed *vim type and prioritize Neovim over Vim
+    if [ -e ${NLINUX_VIM_BINARY} ]; then
+        VIM_TYPE=${NLINUX_VIM_BINARY}
+        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    elif [ -e ${NOPENBSD_VIM_BINARY} ]; then
+        VIM_TYPE=${NOPENBSD_VIM_BINARY}
+        curl -sSfLo $VIMPLUG_NEOVIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    elif [ -e ${LINUX_VIM_BINARY} ]; then
+        VIM_TYPE=${LINUX_VIM_BINARY}
+        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
+    elif [ -e ${OPENBSD_VIM_BINARY} ]; then
+        VIM_TYPE=${OPENBSD_VIM_BINARY}
+        curl -sSfLo $VIMPLUG_VIM_INSTALL_LOCATION --create-dirs $VIMPLUG_URL
     else
-        echo "Neither Neovim nor Vim found. Exiting..."
+        echo "Neither Neovim nor Vim found. Ex(c)iting..."
         exit 1
     fi
 }
@@ -58,10 +51,11 @@ prompt() {
 cat <<EOF
 Select which system to set up for
 =================================
-1. cygwin
-2. linux
-3. openbsd
-0. exit
+1. Cygwin
+2. GNU/Linux
+3. OpenBSD
+
+0. Exit
 EOF
 
     echo -n "Enter choice: "
@@ -75,8 +69,9 @@ EOF
     esac
 }
 
+
 setup() {
-    case $1 in
+    case ${1} in
         cygwin)
             # symlinks
             echo "Installing symlinks..."
@@ -84,7 +79,6 @@ setup() {
             ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
             ln -sf $(pwd)/vimrc ${HOME}/.vimrc
             
-
             # vimplug
             echo "Installing vim-plug..."
             install_vimplug
@@ -101,8 +95,12 @@ setup() {
             # symlinks
             echo "Installing symlinks..."
             ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
-            mkdir -p ${HOME}/.config/nvim/
-            ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
+            if [ -d ${HOME}/.config/nvim ]; then
+                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
+            else
+                mkdir -p ${HOME}/.config/nvim
+                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
+            fi
 
             # vimplug
             echo "Installing vim-plug..."
@@ -155,7 +153,7 @@ setup() {
 if [ $# -eq 0 ]; then
     prompt
 elif [ $# -eq 1 ]; then
-    setup $1
+    setup ${1}
 else
     echo 'Usage: ./setup.sh [cygwin|linux|openbsd]'
     exit 1
