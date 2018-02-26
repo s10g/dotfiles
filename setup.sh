@@ -33,7 +33,7 @@ install_vimplug() {
     _curl_release_ver=$(curl --version | head -1 | cut -f 2 -d " " | cut -d . -f 2)
 
     if [ ${_curl_main_ver} -ge 7 ] && [ ${_curl_release_ver} -ge 24 ]; then
-        break
+        :
     else
         CURL_OPTIONS=-fLo
     fi
