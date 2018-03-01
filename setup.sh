@@ -10,7 +10,7 @@ LINUX_NVIM_BINARY=/usr/bin/nvim
 OPENBSD_VIM_BINARY=/usr/local/bin/vim
 OPENBSD_NVIM_BINARY=/usr/local/bin/nvim
 CURL_OPTIONS="-sSfLo"
-VIM_TYPE=
+VIM_BINARY=
 
 
 # FUNCTIONS
@@ -28,16 +28,16 @@ install_vimplug() {
 
     # Check for installed *vim type and prioritize Neovim over Vim
     if [ -e ${LINUX_NVIM_BINARY} ]; then
-        VIM_TYPE=${LINUX_NVIM_BINARY}
+        VIM_BINARY=${LINUX_NVIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     elif [ -e ${OPENBSD_NVIM_BINARY} ]; then
-        VIM_TYPE=${OPENBSD_NVIM_BINARY}
+        VIM_BINARY=${OPENBSD_NVIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     elif [ -e ${LINUX_VIM_BINARY} ]; then
-        VIM_TYPE=${LINUX_VIM_BINARY}
+        VIM_BINARY=${LINUX_VIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     elif [ -e ${OPENBSD_VIM_BINARY} ]; then
-        VIM_TYPE=${OPENBSD_VIM_BINARY}
+        VIM_BINARY=${OPENBSD_VIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
     else
         echo "Neither Neovim nor Vim found. Ex(c)iting."
@@ -67,30 +67,15 @@ EOF
     esac
 }
 
-setup() {
+install_symlinks() {
     case ${1} in
         cygwin)
-            # symlinks
-            echo "Installing symlinks."
+            ln -sf $(pwd)/vimrc ${HOME}/.vimrc
             ln -sf $(pwd)/minttyrc ${HOME}/.minttyrc
             ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
-            ln -sf $(pwd)/vimrc ${HOME}/.vimrc
-            
-            # vimplug
-            echo "Installing vim-plug."
-            install_vimplug
-
-            # Run Vim/Neovim to install plugins
-            echo "Installing plugins."
-            ${VIM_TYPE} +PlugInstall +qall
-
-            # exit
-            echo "Done."
             ;;
 
         linux)
-            # symlinks
-            echo "Installing symlinks."
             ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
             if [ -d ${HOME}/.config/nvim ]; then
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
@@ -98,22 +83,9 @@ setup() {
                 mkdir -p ${HOME}/.config/nvim
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
             fi
-
-            # vimplug
-            echo "Installing vim-plug."
-            install_vimplug
-
-            # Run Vim/Neovim to install plugins
-            echo "Installing plugins."
-            ${VIM_TYPE} +PlugInstall +qall
-
-            # exit
-            echo "Done."
             ;;
 
         openbsd)
-            # symlinks
-            echo "Installing symlinks."
             ln -sf $(pwd)/Xdefaults ${HOME}/.Xdefaults
             ln -sf $(pwd)/xsession ${HOME}/.xsession
             ln -sf $(pwd)/profile ${HOME}/.profile
@@ -123,16 +95,53 @@ setup() {
                 mkdir -p ${HOME}/.config/nvim
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
             fi
+            ;;
 
-            # vimplug
+        *)
+            echo "Unrecognized target to install symlinks for. Exiting."
+            exit 1
+            ;;
+    esac
+}
+
+setup() {
+    case ${1} in
+        cygwin)
+            echo "Installing symlinks."
+            install_symlinks cygwin
+            
             echo "Installing vim-plug."
             install_vimplug
 
-            # Run Vim/Neovim to install plugins
             echo "Installing plugins."
-            ${VIM_TYPE} +PlugInstall +qall
+            ${VIM_BINARY} +PlugInstall +qall
 
-            # exit
+            echo "Done."
+            ;;
+
+        linux)
+            echo "Installing symlinks."
+            install_symlinks linux
+
+            echo "Installing vim-plug."
+            install_vimplug
+
+            echo "Installing plugins."
+            ${VIM_BINARY} +PlugInstall +qall
+
+            echo "Done."
+            ;;
+
+        openbsd)
+            echo "Installing symlinks."
+            install_symlinks openbsd
+
+            echo "Installing vim-plug."
+            install_vimplug
+
+            echo "Installing plugins."
+            ${VIM_BINARY} +PlugInstall +qall
+
             echo "Done."
             ;;
 
