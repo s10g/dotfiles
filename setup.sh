@@ -114,7 +114,7 @@ install_symlinks() {
             ;;
 
         *)
-            echo "Unrecognized target to install symlinks for. Exiting."
+            echo "Unrecognized target for which to install symlinks for. Exiting."
             exit 1
             ;;
     esac
@@ -132,7 +132,7 @@ install_vimplug() {
         CURL_OPTIONS=-fLo
     fi
 
-    # Check for installed *vim type and prioritize Neovim over Vim
+    # Check for installed *vim binary and prioritize Neovim over Vim.
     if [ -e ${LINUX_NVIM_BINARY} ]; then
         VIM_BINARY=${LINUX_NVIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
