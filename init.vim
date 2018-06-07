@@ -1,16 +1,16 @@
 "# Exit the 70s
 set nocompatible
 
-
 "# Vimplug settings
 call plug#begin('~/.local/share/nvim/plugged')
 
     "## Plugins for basic Vim functionality including plugin management
     Plug 'VundleVim/Vundle.vim'
-    Plug 's10g/vim-sensible'
+    Plug 'tpope/vim-sensible'
     
     "## Plugins for looks
     Plug 'romainl/Apprentice'
+    Plug 'pbrisbin/vim-colors-off'
 
     "## Plugins that augment functionality
     Plug 'tpope/vim-surround'
@@ -19,31 +19,24 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Townk/vim-autoclose'
     Plug 's10g/vim-syncr'
     Plug 'scrooloose/nerdtree'
-    Plug 'pbrisbin/vim-colors-off'
     
     "## Plugins not decided on yet
     "Plug 'tpope/vim-vinegar'
 
 call plug#end()
 
-
 "# Look and theme settings
 set shortmess+=I
-set background=light
-syntax off
-colorscheme off
-
+colorscheme apprentice
 
 "# Wildmenu settings
 set path+=**
 set wildmode=list:longest,full
 
-
 "# Search settings
 set ignorecase
 set smartcase
 set hlsearch
-
 
 "# General behaviour settings
 set tabstop=4

@@ -12,3 +12,4 @@ alias vim="nvim"
 
 # Colored ls output
 alias ls="ls --color"
+alias vim=nvim

@@ -157,6 +157,7 @@ if [ $# -eq 0 ]; then
 elif [ $# -eq 1 ]; then
     setup ${1}
 else
+    echo "$@"
     echo 'Usage: ./setup.sh [cygwin|linux|openbsd]'
     exit 1
 fi
