@@ -9,7 +9,7 @@ LINUX_VIM_BINARY=/usr/bin/vim
 LINUX_NVIM_BINARY=/usr/bin/nvim
 OPENBSD_VIM_BINARY=/usr/local/bin/vim
 OPENBSD_NVIM_BINARY=/usr/local/bin/nvim
-CURL_OPTIONS="-sSfLo"
+CURL_OPTIONS="-SfLo"
 VIM_BINARY=
 
 
@@ -19,8 +19,9 @@ cat <<EOF
 Select which system to set up for
 
 1. Cygwin
-2. Linux
-3. OpenBSD
+2. Linux Vim
+3. Linux Neovim
+4. OpenBSD
 
 0. Exit
 EOF
@@ -29,8 +30,9 @@ EOF
     read _choice
     case ${_choice} in
         1) setup cygwin;;
-        2) setup linux;;
-        3) setup openbsd;;
+        2) setup linux_vim;;
+	3) setup linux_nvim;;
+        4) setup openbsd;;
         0) exit 0;;
         *) echo ""; echo "Choice not recognized."; echo ""; prompt;;
     esac
@@ -51,9 +53,22 @@ setup() {
             echo "Done."
             ;;
 
-        linux)
+        linux_vim)
             echo "Installing symlinks."
-            install_symlinks linux
+            install_symlinks linux_vim
+
+            echo "Installing vim-plug."
+            install_vimplug
+
+            echo "Installing plugins."
+            ${VIM_BINARY} +PlugInstall +qall
+
+            echo "Done."
+            ;;
+
+        linux_nvim)
+            echo "Installing symlinks."
+            install_symlinks linux_nvim
 
             echo "Installing vim-plug."
             install_vimplug
@@ -91,7 +106,11 @@ install_symlinks() {
             ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
             ;;
 
-        linux)
+        linux_vim)
+            ln -sf $(pwd)/vimrc ${HOME}/.vimrc
+            ;;
+
+        linux_nvim)
             ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
             if [ -d ${HOME}/.config/nvim ]; then
                 ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
@@ -136,15 +155,19 @@ install_vimplug() {
     if [ -e ${LINUX_NVIM_BINARY} ]; then
         VIM_BINARY=${LINUX_NVIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
+        echo "i ran 1"
     elif [ -e ${OPENBSD_NVIM_BINARY} ]; then
         VIM_BINARY=${OPENBSD_NVIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
+        echo "i ran 2"
     elif [ -e ${LINUX_VIM_BINARY} ]; then
         VIM_BINARY=${LINUX_VIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
+        echo "i ran 3"
     elif [ -e ${OPENBSD_VIM_BINARY} ]; then
         VIM_BINARY=${OPENBSD_VIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
+        echo "i ran 4"
     else
         echo "Neither Neovim nor Vim found. Ex(c)iting."
         exit 1
