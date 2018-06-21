@@ -29,7 +29,8 @@ call plug#end()
 
 "# Look and theme settings
 set shortmess+=I
-colorscheme apprentice
+set background=light
+colorscheme off
 
 
 "# Wildmenu settings
