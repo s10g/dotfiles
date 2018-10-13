@@ -1,4 +1,6 @@
 #!/bin/sh
+# UNCOMMENT FOR DEBUG MODE
+set -x
 
 # CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -6,7 +8,6 @@ VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
 LINUX_VIM_BINARY=/usr/bin/vim
 CURL_OPTIONS="-SfLo"
 VIM_BINARY=
-
 
 # FUNCTIONS
 install_symlinks() {
@@ -25,10 +26,9 @@ install_vimplug() {
         CURL_OPTIONS=-fLo
     fi
 
-    # Check for installed *vim binary and prioritize Neovim over Vim.
+    # Ensure we have a vim binary first, then install Plug and run PlugInstall. Exit if vim binary is not found.
     if [ -e ${LINUX_VIM_BINARY} ]; then
         VIM_BINARY=${LINUX_VIM_BINARY}
-        echo "found this vim binary: ${VIM_BINARY}"
         curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
         ${VIM_BINARY} +PlugInstall +qall
     else
@@ -38,5 +38,5 @@ install_vimplug() {
 }
 
 # MAIN
-install_vimplug
 install_symlinks
+install_vimplug
