@@ -1,6 +1,6 @@
 #!/bin/sh
 # UNCOMMENT FOR DEBUG MODE
-set -x
+#set -x
 
 # CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
