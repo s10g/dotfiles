@@ -16,6 +16,7 @@ set splitright
 set nobackup
 set nowritebackup
 set noswapfile
+set number
 
 inoremap jj <ESC>
 nnoremap <C-j> :bnext<CR>
