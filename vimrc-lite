@@ -17,7 +17,11 @@ set nobackup
 set nowritebackup
 set noswapfile
 set number
+set background=dark
+set paste
 
 inoremap jj <ESC>
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-k> :bprev<CR>
+
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2

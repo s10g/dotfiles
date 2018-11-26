@@ -1,6 +1,6 @@
 #!/bin/sh
 # UNCOMMENT FOR DEBUG MODE
-#set -x
+set -x
 
 # CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -12,6 +12,7 @@ VIM_BINARY=
 # FUNCTIONS
 install_symlinks() {
     ln -sf $(pwd)/vimrc-lite ${HOME}/.vimrc
+    ln -sf $(pwd)/tmux.conf ${HOME}/.tmux.conf
 }
 
 install_vimplug() {
