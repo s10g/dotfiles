@@ -5,11 +5,11 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 set expandtab
+set tabstop=4
+set shiftwidth=4
 set noshowmatch
 set hlsearch
 set clipboard=unnamed
-set tabstop=4
-set shiftwidth=4
 set hidden
 set splitbelow
 set splitright
@@ -17,8 +17,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 set number
+set list
 set background=dark
-set paste
 
 inoremap jj <ESC>
 nnoremap <C-j> :bnext<CR>
