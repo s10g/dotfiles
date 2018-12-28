@@ -11,8 +11,8 @@ VIM_BINARY=
 
 # FUNCTIONS
 install_symlinks() {
-    ln -sf vimrc ${HOME}/.vimrc
-    ln -sf tmux.conf ${HOME}/.tmux.conf
+    ln -sf ${0%/*}/vimrc ${HOME}/.vimrc
+    ln -sf ${0%/*}/tmux.conf ${HOME}/.tmux.conf
 }
 
 install_vimplug() {
