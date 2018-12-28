@@ -1,142 +1,18 @@
 #!/bin/sh
-
+# UNCOMMENT FOR DEBUG MODE
+set -x
 
 # CONSTANTS
 VIMPLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 VIMPLUG_VIM_INSTALL_LOCATION=$HOME/.vim/autoload/plug.vim
-VIMPLUG_NVIM_INSTALL_LOCATION=$HOME/.local/share/nvim/site/autoload/plug.vim
 LINUX_VIM_BINARY=/usr/bin/vim
-LINUX_NVIM_BINARY=/usr/bin/nvim
-OPENBSD_VIM_BINARY=/usr/local/bin/vim
-OPENBSD_NVIM_BINARY=/usr/local/bin/nvim
 CURL_OPTIONS="-SfLo"
 VIM_BINARY=
 
-
 # FUNCTIONS
-prompt() {
-cat <<EOF
-Select which system to set up for
-
-1. Cygwin
-2. Linux Vim
-3. Linux Neovim
-4. OpenBSD
-
-0. Exit
-EOF
-
-    echo -n "Enter choice: "
-    read _choice
-    case ${_choice} in
-        1) setup cygwin;;
-        2) setup linux_vim;;
-	3) setup linux_nvim;;
-        4) setup openbsd;;
-        0) exit 0;;
-        *) echo ""; echo "Choice not recognized."; echo ""; prompt;;
-    esac
-}
-
-setup() {
-    case ${1} in
-        cygwin)
-            echo "Installing symlinks."
-            install_symlinks cygwin
-            
-            echo "Installing vim-plug."
-            install_vimplug
-
-            echo "Installing plugins."
-            ${VIM_BINARY} +PlugInstall +qall
-
-            echo "Done."
-            ;;
-
-        linux_vim)
-            echo "Installing symlinks."
-            install_symlinks linux_vim
-
-            echo "Installing vim-plug."
-            install_vimplug
-
-            echo "Installing plugins."
-            ${VIM_BINARY} +PlugInstall +qall
-
-            echo "Done."
-            ;;
-
-        linux_nvim)
-            echo "Installing symlinks."
-            install_symlinks linux_nvim
-
-            echo "Installing vim-plug."
-            install_vimplug
-
-            echo "Installing plugins."
-            ${VIM_BINARY} +PlugInstall +qall
-
-            echo "Done."
-            ;;
-
-        openbsd)
-            echo "Installing symlinks."
-            install_symlinks openbsd
-
-            echo "Installing vim-plug."
-            install_vimplug
-
-            echo "Installing plugins."
-            ${VIM_BINARY} +PlugInstall +qall
-
-            echo "Done."
-            ;;
-
-        *)
-            echo "Not a valid setup target. Exiting."
-            exit 1
-    esac
-}
-
 install_symlinks() {
-    case ${1} in
-        cygwin)
-            ln -sf $(pwd)/vimrc ${HOME}/.vimrc
-            ln -sf $(pwd)/minttyrc ${HOME}/.minttyrc
-            ln -sf $(pwd)/bashrc.cygwin ${HOME}/.bashrc
-            ;;
-
-        linux_vim)
-            ln -sf $(pwd)/vimrc ${HOME}/.vimrc
-            ;;
-
-        linux_nvim)
-            ln -sf $(pwd)/bashrc.linux ${HOME}/.bashrc
-            if [ -d ${HOME}/.config/nvim ]; then
-                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
-            else
-                mkdir -p ${HOME}/.config/nvim
-                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
-            fi
-            ;;
-
-        openbsd)
-            ln -sf $(pwd)/Xdefaults ${HOME}/.Xdefaults
-            ln -sf $(pwd)/xsession ${HOME}/.xsession
-            ln -sf $(pwd)/profile ${HOME}/.profile
-            if [ -d ${HOME}/.config/nvim ]; then
-                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
-            else
-                mkdir -p ${HOME}/.config/nvim
-                ln -sf $(pwd)/init.vim ${HOME}/.config/nvim/init.vim
-            fi
-            ;;
-
-        *)
-            echo "Unrecognized target for which to install symlinks for. Exiting."
-            exit 1
-            ;;
-    esac
+    ln -sf $(pwd)/vimrc ${HOME}/.vimrc
+    ln -sf $(pwd)/tmux.conf ${HOME}/.tmux.conf
 }
 
 install_vimplug() {
@@ -151,36 +27,17 @@ install_vimplug() {
         CURL_OPTIONS=-fLo
     fi
 
-    # Check for installed *vim binary and prioritize Neovim over Vim.
-    if [ -e ${LINUX_NVIM_BINARY} ]; then
-        VIM_BINARY=${LINUX_NVIM_BINARY}
-        curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
-        echo "i ran 1"
-    elif [ -e ${OPENBSD_NVIM_BINARY} ]; then
-        VIM_BINARY=${OPENBSD_NVIM_BINARY}
-        curl ${CURL_OPTIONS} ${VIMPLUG_NVIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
-        echo "i ran 2"
-    elif [ -e ${LINUX_VIM_BINARY} ]; then
+    # Ensure we have a vim binary first, then install Plug and run PlugInstall. Exit if vim binary is not found.
+    if [ -e ${LINUX_VIM_BINARY} ]; then
         VIM_BINARY=${LINUX_VIM_BINARY}
         curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
-        echo "i ran 3"
-    elif [ -e ${OPENBSD_VIM_BINARY} ]; then
-        VIM_BINARY=${OPENBSD_VIM_BINARY}
-        curl ${CURL_OPTIONS} ${VIMPLUG_VIM_INSTALL_LOCATION} --create-dirs ${VIMPLUG_URL}
-        echo "i ran 4"
+        ${VIM_BINARY} +PlugInstall +qall
     else
-        echo "Neither Neovim nor Vim found. Ex(c)iting."
+        echo "Vim not found. Ex(c)iting."
         exit 1
     fi
 }
 
 # MAIN
-if [ $# -eq 0 ]; then
-    prompt
-elif [ $# -eq 1 ]; then
-    setup ${1}
-else
-    echo "$@"
-    echo 'Usage: ./setup.sh [cygwin|linux|openbsd]'
-    exit 1
-fi
+install_symlinks
+install_vimplug
