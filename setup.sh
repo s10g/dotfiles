@@ -11,6 +11,7 @@ VIM_BINARY=
 
 # FUNCTIONS
 install_symlinks() {
+    # This magic gets the parent path of this script
     ln -sf ${0%/*}/vimrc ${HOME}/.vimrc
     ln -sf ${0%/*}/tmux.conf ${HOME}/.tmux.conf
 }
