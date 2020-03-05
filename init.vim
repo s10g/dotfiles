@@ -1,6 +1,9 @@
 call plug#begin(stdpath('data') . '/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'desmap/slick'
 call plug#end()
+
+colorscheme slick
 
 set number
 set hidden
@@ -15,6 +18,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 set clipboard=unnamed
+set termguicolors
 
 inoremap jj <ESC>
 nnoremap <leader>a :cclose<CR>
