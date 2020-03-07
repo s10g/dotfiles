@@ -1,9 +1,10 @@
 call plug#begin(stdpath('data') . '/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  "Plug 'itchyny/lightline.vim'
+  Plug 'vim-scripts/greenvision'
 call plug#end()
 
-colorscheme default
+colorscheme greenvision
+syntax off
 
 set number
 set hidden
@@ -32,4 +33,3 @@ map <C-m> :cprevious<CR>
 "      \ 'colorscheme': 'one',
 "      \ }
 "
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGreen ctermbg=NONE gui=NONE guifg=DarkGreen guibg=NONE
