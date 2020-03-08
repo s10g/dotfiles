@@ -20,7 +20,7 @@ set nowritebackup
 set noswapfile
 set clipboard=unnamed
 set termguicolors
-set noshowmode
+set showmode
 
 inoremap jj <ESC>
 nnoremap <leader>a :cclose<CR>
@@ -29,7 +29,3 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 
-"let g:lightline = {
-"      \ 'colorscheme': 'one',
-"      \ }
-"
