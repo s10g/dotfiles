@@ -1,8 +1,15 @@
+" To install Vim-plug on Windows, do this:
+" curl -fLo %USERPROFILE%\vimfiles\autoload\plug.vim --create-dirs \
+" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+" By not providing a dir to plug#begin(), it will pick the sensible 
+" default location of %USERPROFILE%\vimfiles\plugged, which is nice
 call plug#begin()
     Plug 'tpope/vim-sensible'
 call plug#end()
 
 colorscheme darkblue
+syntax off
 
 set expandtab
 set tabstop=4
@@ -18,7 +25,6 @@ set nowritebackup
 set noswapfile
 set number
 set background=dark
-
 
 
 " Set window size (gvim)
@@ -44,3 +50,4 @@ nnoremap <C-k> :bprev<CR>
 
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType go setlocal noexpandtab shiftwidth=8 tabstop=8
+
