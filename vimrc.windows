@@ -1,0 +1,46 @@
+call plug#begin()
+    Plug 'tpope/vim-sensible'
+call plug#end()
+
+colorscheme darkblue
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set noshowmatch
+set hlsearch
+set clipboard=unnamed
+set hidden
+set splitbelow
+set splitright
+set nobackup
+set nowritebackup
+set noswapfile
+set number
+set background=dark
+
+
+
+" Set window size (gvim)
+set lines=55
+set columns=120
+
+" Remove menubar (gvim)
+set guioptions-=m
+
+" Remove toolbar (gvim)
+set guioptions-=T
+
+" Remove scrollbars (gvim)
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
+
+inoremap jj <ESC>
+nnoremap <C-j> :bnext<CR>
+nnoremap <C-k> :bprev<CR>
+
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType go setlocal noexpandtab shiftwidth=8 tabstop=8
