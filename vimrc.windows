@@ -1,4 +1,4 @@
-" To install Vim-plug on Windows, do this:
+" To install Vim-plug on Windows, do this in cmd.exe (Win10 has curl):
 " curl -fLo %USERPROFILE%\vimfiles\autoload\plug.vim --create-dirs \
 " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -6,28 +6,29 @@
 " default location of %USERPROFILE%\vimfiles\plugged, which is nice
 call plug#begin()
     Plug 'tpope/vim-sensible'
+    Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 colorscheme darkblue
-syntax off
 
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set noshowmatch
-set hlsearch
+set background=dark
 set clipboard=unnamed
+set colorcolumn=110
+set expandtab
 set hidden
+set hlsearch
+set nobackup
+set noshowmatch
+set noswapfile
+set nowritebackup
+set number
+set shiftwidth=4
 set splitbelow
 set splitright
-set nobackup
-set nowritebackup
-set noswapfile
-set number
-set background=dark
+set tabstop=4
 
 
-" Set window size (gvim)
+" Set window size on start (gvim)
 set lines=55
 set columns=120
 
@@ -44,10 +45,18 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
+" Make Shift + Insert do the right thing
+if has("gui_running")
+    map  <silent>  <S-Insert>  "+p
+    imap <silent>  <S-Insert>  <Esc>"+pa
+endif
+
 inoremap jj <ESC>
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-k> :bprev<CR>
 
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType go setlocal noexpandtab shiftwidth=8 tabstop=8
+
+set wildignore+=*\\AppData\\*,*\\Application\ Data\\* 
 
