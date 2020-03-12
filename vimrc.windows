@@ -23,32 +23,27 @@ set noswapfile
 set nowritebackup
 set number
 set shiftwidth=4
-set splitbelow
-set splitright
 set tabstop=4
 
-
-" Set window size on start (gvim)
-set lines=55
-set columns=120
-
-" Remove menubar (gvim)
-set guioptions-=m
-
-" Remove toolbar (gvim)
-set guioptions-=T
-
-" Remove scrollbars (gvim)
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-set guioptions-=b
-
-" Make Shift + Insert do the right thing
+" Do some extra configuration if we're running in gVim
 if has("gui_running")
+    " Remove menubar (gvim)
+    set guioptions-=m
+
+    " Remove toolbar (gvim)
+    set guioptions-=T
+
+    " Remove scrollbars (gvim)
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=b
+
+    " Make Shift + Insert do the right thing
     map  <silent>  <S-Insert>  "+p
     imap <silent>  <S-Insert>  <Esc>"+pa
+
 endif
 
 inoremap jj <ESC>
@@ -58,5 +53,6 @@ nnoremap <C-k> :bprev<CR>
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType go setlocal noexpandtab shiftwidth=8 tabstop=8
 
-set wildignore+=*\\AppData\\*,*\\Application\ Data\\* 
+set wildignore+=*\\AppData\\*,*\\Application\ Data\\*
 
+let g:netrw_fastbrowse = 0
