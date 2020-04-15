@@ -56,3 +56,5 @@ autocmd FileType go setlocal noexpandtab shiftwidth=8 tabstop=8
 set wildignore+=*\\AppData\\*,*\\Application\ Data\\*
 
 let g:netrw_fastbrowse = 0
+
+set makeprg=C:\msys64\usr\bin\make
