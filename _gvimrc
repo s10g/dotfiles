@@ -1,0 +1,16 @@
+" Do some extra configuration for gVim
+" Set the font (gvim)
+set guifont=Consolas:h11:cDEFAULT:qDEFAULT
+
+" Remove menubar (gvim)
+set guioptions-=m
+
+" Remove toolbar (gvim)
+set guioptions-=T
+
+" Remove scrollbars (gvim)
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b

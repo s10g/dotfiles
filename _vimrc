@@ -9,9 +9,9 @@ call plug#begin()
     Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
-colorscheme darkblue
+"colorscheme darkblue
 
-set background=dark
+"set background=dark
 set clipboard=unnamed
 set colorcolumn=110
 set expandtab
@@ -25,26 +25,9 @@ set number
 set shiftwidth=4
 set tabstop=4
 
-" Do some extra configuration if we're running in gVim
-if has("gui_running")
-    " Remove menubar (gvim)
-    set guioptions-=m
-
-    " Remove toolbar (gvim)
-    set guioptions-=T
-
-    " Remove scrollbars (gvim)
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=b
-
-    " Make Shift + Insert do the right thing
-    map  <silent>  <S-Insert>  "+p
-    imap <silent>  <S-Insert>  <Esc>"+pa
-
-endif
+" Make Shift + Insert do the right thing
+map  <silent>  <S-Insert>  "+p
+imap <silent>  <S-Insert>  <Esc>"+pa
 
 inoremap jj <ESC>
 nnoremap <C-j> :bnext<CR>
@@ -57,4 +40,5 @@ set wildignore+=*\\AppData\\*,*\\Application\ Data\\*
 
 let g:netrw_fastbrowse = 0
 
-set makeprg=C:\msys64\usr\bin\make
+map <F2> :enew<CR>
+map <F5> :!make && ./a.out<CR>

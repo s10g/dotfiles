@@ -1,2 +1,2 @@
 # My dotfiles
-Clone the repo into i.e. ~/.dotfiles, cd into .dotfiles, run setup.sh
+On Windows for GVim: put the _vimrc and _gvimrc files in C:\Users\<you>\_*
